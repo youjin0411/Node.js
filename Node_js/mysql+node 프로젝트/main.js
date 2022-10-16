@@ -22,7 +22,7 @@ var app = http.createServer(function(request,response){
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
-    if(pathname === '/'){
+    if(pathname === '/'){ 
       if(queryData.id === undefined){
         /* fs.readdir('./data', function(error, filelist){
           var title = 'Welcome';
@@ -35,8 +35,18 @@ var app = http.createServer(function(request,response){
           response.writeHead(200);
           response.end(html);
         }); */
+        //query() 메소드를 호출해서 인자를 준다.
+        //topics은 sql의 결과가 담기게 약속되어 있음
         db.query(`SELECT * FROM topic`, function(error,topics){
           console.log(topics);
+          var title = 'Welcome';
+          var description = 'Hello, Node.js';
+          var list = template.list(topics);
+          var html = template.HTML(title, list,
+            `<h2>${title}</h2>${description}`,
+            `<a href="/create">create</a>`
+          );
+          //웹사이트이므로 꼭 필요 
           response.writeHead(200);
           response.end('Success');
         });
