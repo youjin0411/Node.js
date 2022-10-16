@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "mysql": "github:mysqljs/mysql",
     "require": "^2.4.20"
   }
 }
