@@ -1,0 +1,95 @@
+<body>
+    <div id="posts">
+
+    </div>
+
+</body>
+    <script>
+        //div의 id posts 가져오기 
+        let posts = document.getElementById("posts");
+        //let posts = document.querySelector("#posts");
+        //let posts = document.querySelectorAll("#posts")[0];
+
+        const makePost = function(title, content){
+            const div = document.createElement("div") //div 태그 생성 
+            // div.innerHTML = `<h1>${title}</h1><p>${content}</p>`; 한번에 h1, p 태그 생성
+
+            const t = document.createElement("h1")  // H1 태그 생성
+            const text = document.createTextNode(title) //text에 title 문자 넣기
+            t.append(text)  //H1 태그에 인자값 title 문자 넣기  <h1>title</h1>
+
+            const c = document.createElement("p") //P 태그 생성하기
+            const text2 = document.createTextNode(content) //text2에 content 문자 넣기
+            c.append(text2) //p태그에 인자값 title 문자 넣기 <p>content</p>
+
+            const btn = document.createElement("button")
+            const buts = document.createTextNode("삭제버튼")
+            btn.append(buts)
+
+            div.appendChild(t);   //div영역 안에 자식 태그로 h1태그 넣기 <div><h1></h1></div>
+            div.appendChild(c);   //div영역 안에 자식 태그로 p태그 넣기 <div><p></p></div>
+            div.appendChild(btn);
+
+            btn.addEventListener('click', () => {  //addEventListener은 btn에 이벤트를 생성하는 것 
+                btn.parentElement.remove();
+                //div.remove();
+            });
+            return div;
+        }
+        for(let i = 1; i <= 20; i++){
+            posts.append(makePost("글 제목 " + i , "글 내용 " + i));
+        }
+
+        //게시글 올리기 post
+        const makePostEditor = () => {
+            const div1 = document.createElement("div")
+            div1.setAttribute("id", "editor");
+
+            const span1 = document.createElement("span")
+            const spantext = document.createTextNode("제목")
+            span1.append(spantext)
+
+            const input1 = document.createElement("input")
+            input1.setAttribute("id", "title");
+            input1.setAttribute("type", "text")
+
+            const br1 = document.createElement("br")
+        
+            const span2 = document.createElement("span")
+            const span2text = document.createTextNode("내용")
+            span2.append(span2text)
+
+            const input2 = document.createElement("input")
+            input1.setAttribute("id", "content")
+            input1.setAttribute("type", "text")
+
+            const time = document.createElement("p")
+            const timetext = document.createTextNode(new Date().toString)
+            time.append(timetext)
+
+            const br2 = document.createElement("br")
+
+            const btn = document.createElement("button")
+            const btntext = document.createTextNode("글 추가")
+            btn.append(btntext)
+
+            div1.appendChild(span1);
+            div1.appendChild(input1)
+            div1.appendChild(br1)
+            div1.appendChild(span2);
+            div1.appendChild(input2)
+            div1.appendChild(br2)
+            div1.appendChild(btn)
+
+            div1.children[6].onclick = function(){
+                let post = makePost(
+                    div1.children[1].value,
+                    div1.children[4].value);
+                posts.append(post)
+            };
+            return div1 
+    }
+    document.body.prepend(makePostEditor());
+
+
+    </script>
