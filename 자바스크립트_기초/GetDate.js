@@ -12,4 +12,4 @@ firstDate.getDay();
 
 //2022년 9월 마지막 날짜
 let lastDate = new Date(2022, 9, 0); //2022년 10(9+1)월 0일 의미
-lastDate.getDate();
+lastDate.getDate();    
