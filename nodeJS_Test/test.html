@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>test</title>
+</head>
+<body>
+	<script>
+		let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+		alert(name1); //Julius
+		alert(name2); //Caesar
+
+		//rest는 배열
+		alert(rest[0]); //Consul
+		alert(rest[1]); //of the Roman Republic
+		alert(rest.length); //2
+	</script>
+</body>
+</html>
